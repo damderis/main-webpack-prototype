@@ -11,8 +11,10 @@ This project showcases a responsive UI component library for Prototype, featurin
 1. **Clone the repository**
 
    ```bash
-   git clone <http-repo-link>
-   cd main-prototype-webpack
+   git clone git@github.com:damderis/main-webpack-prototype.git
+   ```
+   ```bash
+   cd main-webpack-prototype
    ```
 
 2. **Install dependencies**
