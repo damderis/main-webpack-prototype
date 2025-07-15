@@ -51,4 +51,11 @@ module.exports = {
     hot: true, // Enable Hot Module Replacement
     historyApiFallback: true, // Important for client-side routing
   },
+  resolve: {
+    alias: {
+      // Alias to make imports cleaner, points to the project root
+      '@components': path.resolve(__dirname, '.'),
+    },
+  },
+
 };
