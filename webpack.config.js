@@ -1,19 +1,21 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: './src/main.js', // Our main client-side JavaScript
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'main.js',
     publicPath: '', // Ensures assets are served from the root
   },
   module: {
     rules: [
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+       {
+        test: /\.s?css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.pug$/,
@@ -31,6 +33,13 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    minimizer: [
+      '...',
+      // For webpack v5, you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line // `...`,
+      new CssMinimizerPlugin(),
+    ],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/main.pug', // Use our new shell Pug template
@@ -42,6 +51,7 @@ module.exports = {
         { from: 'assets', to: 'assets' },
       ],
     }),
+    new MiniCssExtractPlugin(), // <-- FIXED: removed array brackets
   ],
   devServer: {
     static: {
