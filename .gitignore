@@ -1,8 +1,12 @@
 # Ignore node.js dependencies
 node_modules/
+pug/node_modules/
+html/node_modules/
 
 # Ignore Webpack build output
 dist/
+pug/dist/
+html/dist/
 
 # Optional: OS & editor-specific
 .DS_Store
